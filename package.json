@@ -1,0 +1,23 @@
+{
+  "name": "agentos",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,store,web -c blue,green,magenta \"npm:dev:api\" \"npm:dev:store\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @agentos/api",
+    "dev:store": "npm run dev -w @agentos/mock-store",
+    "dev:web": "npm run dev -w @agentos/dashboard",
+    "keys": "npm run keys -w @agentos/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test:phase2": "npm run test:crypto -w @agentos/api && npm run test:db -w @agentos/api",
+    "try-it": "npm run try-it -w @agentos/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "typescript": "^5.6.3"
+  }
+}
